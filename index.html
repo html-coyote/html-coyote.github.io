@@ -1,0 +1,110 @@
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/github-markdown.css">
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+    <title>HTML-Coyote: Home page</title>
+
+
+
+    <header>
+        <h1>
+            HTML-Coyote
+            
+        </h1>
+    </header>
+    <section class="conainer">
+      
+        <section class="content">
+            
+    <div class="markdown-body">
+        <h1 id="introduction">Introduction</h1>
+<p>HTML-Coyote is a HTML static site generator</p>
+<h2 id="install">Install</h2>
+<pre><code class="language-bash">$ npm i -g html-coyote</code></pre>
+<h2 id="getting-started">Getting Started</h2>
+<p>Create a directory for the site</p>
+<pre><code class="language-bash">$ mkdir html-coyote-example
+$ cd html-coyote-example</code></pre>
+<p>Create the site from a default template and run it on development server</p>
+<pre><code class="language-bash">$ coyo new
+$ coyo run
+
+# Serving "./publish" at http://127.0.0.1:7001</code></pre>
+<p>Browse to <a href="http://127.0.0.1:7001">http://127.0.0.1:7001</a></p>
+<h2 id="basic-usage">Basic Usage</h2>
+<h3 id="layouts">Layouts</h3>
+<p>./site/layouts/layout.html</p>
+<pre><code class="language-html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;slot name="header"&gt;&lt;/slot&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav&gt;
+            &lt;template loop="item of menu"&gt;
+                &lt;menu-item :name="item.name" :url="item.url"&gt;
+                    {{item.title}}
+                &lt;/menu-item&gt;
+            &lt;/template&gt;
+        &lt;/nav&gt;
+        &lt;slot name="content"&gt;&lt;/slot&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3 id="pages">Pages</h3>
+<p>./site/pages/page.html</p>
+<pre><code class="language-html">&lt;template slot="header"&gt;
+    &lt;title&gt;{{ meta.title }}&lt;/title&gt;
+&lt;/template&gt;
+
+&lt;template slot="content"&gt;
+    &lt;template markdown&gt;&lt;/template&gt;
+&lt;/template&gt;</code></pre>
+<h3 id="content">Content</h3>
+<p>./site/content/index.md</p>
+<pre><code class="language-markdown">page: page
+title: "Home page"
+
+# Home page
+Some content</code></pre>
+<p>./site/content/about.md</p>
+<pre><code class="language-markdown">page: page
+title: "About page"
+
+# Home page
+Some content</code></pre>
+<p>./site/content/settings.yml</p>
+<pre><code class="language-yaml">menu:
+    - { name: 'index', url: 'index.html', title: 'Home' }
+    - { name: 'about', url: 'about.html', title: 'About' }</code></pre>
+<h3 id="common-parts">Common Parts</h3>
+<p>./site/parts/menu-item.html</p>
+<pre><code class="language-html">&lt;!--#
+.name
+.url
+@content
+--&gt;
+
+&lt;template&gt;
+    &lt;li&gt;
+        &lt;template if="__pageName === name"&gt;
+            &lt;span&gt;{{content}}&lt;/span&gt;
+        &lt;/template&gt;
+        &lt;template&gt;
+            &lt;a href="{{url}}"&gt;{{content}}&lt;/a&gt;
+        &lt;/template&gt;
+    &lt;/li&gt;
+&lt;/template&gt;</code></pre>
+<h2 id="build-to-production">Build to Production</h2>
+<pre><code class="language-bash">$ coyo build</code></pre>
+<h2 id="live-demo">Live Demo</h2>
+<p><a href="https://html-coyote.github.io/demo/index.html">Go to Live Demo</a></p>
+
+        
+    </div>
+
+        </section>
+    </section>
+    <footer></footer>
+
+</body></html>
