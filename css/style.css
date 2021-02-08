@@ -4,6 +4,12 @@ body {
     flex-direction: column;
 }
 
+.logo{
+	padding: 8px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
 
 .content{
     display: flex;
