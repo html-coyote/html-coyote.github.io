@@ -4,7 +4,7 @@ function init() {
         .then((r)=>{
             return r.json() 
         })
-		then(j=>{
+		.then(j=>{
 			console.dir(j)
 		})
         .catch(e=>{
